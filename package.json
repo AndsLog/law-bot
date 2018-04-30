@@ -1,0 +1,25 @@
+{
+  "name": "law-bot",
+  "version": "1.0.0",
+  "description": "line bot for search newest law",
+  "main": "index.js",
+  "dependencies": {
+    "@line/bot-sdk": "^6.0.1",
+    "eslint": "^4.19.1",
+    "express": "^4.16.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndsLog/law-bot.git"
+  },
+  "author": "andy lee",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndsLog/law-bot/issues"
+  },
+  "homepage": "https://github.com/AndsLog/law-bot#readme"
+}
