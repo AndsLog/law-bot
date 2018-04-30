@@ -10,12 +10,17 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node"
+    "start": "node index.js"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/AndsLog/law-bot.git"
   },
+  "keywords": [
+    "node",
+    "line",
+    "sdk"
+  ],
   "author": "andy lee",
   "license": "ISC",
   "bugs": {
