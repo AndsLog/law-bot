@@ -20,6 +20,17 @@ console.log("Line bot create");
 // about Express itself: https://expressjs.com/
 const app = express();
 
+// listen on port
+// const port = process.env.PORT || 3000;
+// app.listen(port, () => {
+//   console.log(`listening on ${port}`);
+// });
+
+const server = app.listen(process.env.PORT || 8080, function() {
+  const port = server.address().port;
+  console.log("App now running on port", port);
+});
+
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
@@ -45,14 +56,3 @@ function handleEvent(event) {
   // use reply API
   return client.replyMessage(event.replyToken, echo);
 }
-
-// listen on port
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`listening on ${port}`);
-});
-
-// const server = app.listen(process.env.PORT || 8080, function() {
-//   const port = server.address().port;
-//   console.log("App now running on port", port);
-// });
