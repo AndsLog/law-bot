@@ -4,12 +4,17 @@ console.log("App start");
 
 const line = require('@line/bot-sdk');
 const express = require('express');
+const request = require('request');
+const cheerio = require('cheerio');
 
 // create LINE SDK config from env variables
 const config = {
   channelAccessToken: 'YBj7tCC0v+3hSQS1OPOI3WGgpuiWwOqA+vs6AlZPgc7kksKaZnXXKMSDovk492L64WbEBSRPcq7Yr9WZ8EKS0un7/AJPpCP92Rr4Y+H+DxUnF/ZVzS20I+iNEBCe1oGEblvmazUj0D5157DnSQhAagdB04t89/1O/w1cDnyilFU=',
   channelSecret: 'cb52a3777c92132d08710579a22a5424',
 };
+
+const lawGovUrl = 'https://lis.ly.gov.tw/lglawc/lglawkm';
+const cuntryLawUrl = 'https://law.moj.gov.tw//Schedule/cll.html';
 
 // create LINE SDK client
 const client = new line.Client(config);
@@ -51,4 +56,10 @@ function handleEvent(event) {
 
   // use reply API
   return client.replyMessage(event.replyToken, echo);
+}
+
+function lawSearch() {
+  request.get(lawGovUrl, function(error) {
+
+  });
 }
