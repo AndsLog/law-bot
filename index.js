@@ -21,22 +21,18 @@ console.log("Line bot create");
 const app = express();
 
 // listen on port
-// const port = process.env.PORT || 3000;
-// app.listen(port, () => {
-//   console.log(`listening on ${port}`);
-// });
-
-const server = app.listen(process.env.PORT || 8080, function() {
-  const port = server.address().port;
-  console.log("App now running on port", port);
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`listening on ${port}`);
 });
+
 
 // register a webhook handler with middleware
 // about the middleware, please refer to doc
 app.post('/callback', line.middleware(config), (req, res) => {
   Promise
     .all(req.body.events.map(handleEvent))
-    .then((result) => res.json(result))
+    .then((result) => res.status(200).json(result))
     .catch((err) => {
       console.error(err);
       res.status(500).end();
