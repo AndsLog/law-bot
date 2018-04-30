@@ -43,7 +43,12 @@ function handleEvent(event) {
 }
 
 // listen on port
-const port = process.env.PORT || 3000;
-app.listen(port, () => {
-  console.log(`listening on ${port}`);
+// const port = process.env.PORT || 3000;
+// app.listen(port, () => {
+//   console.log(`listening on ${port}`);
+// });
+
+const server = app.listen(process.env.PORT || 8080, function() {
+  const port = server.address().port;
+  console.log("App now running on port", port);
 });
