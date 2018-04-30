@@ -1,5 +1,7 @@
 'use strict';
 
+console.log("App start");
+
 const line = require('@line/bot-sdk');
 const express = require('express');
 
@@ -11,6 +13,8 @@ const config = {
 
 // create LINE SDK client
 const client = new line.Client(config);
+
+console.log("Line bot create");
 
 // create Express app
 // about Express itself: https://expressjs.com/
