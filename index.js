@@ -13,7 +13,7 @@ const config = {
   channelSecret: 'cb52a3777c92132d08710579a22a5424'
 };
 
-// const config_cat = {
+// const config = {
 //   channelAccessToken: 'CHSFSSkScq10baLGKQO0AWVoZ6hTTA3x8xSbAiwF1TY4rNBDZqiPFXsgpgN9mycyQUBVcouOMaSOY83jZs0HiQaRZCUZgnn98r15EVDg40U/FFPGGyyRp/zHlSD3rZYZkCZRW7uEQHEufpW2YRG0+wdB04t89/1O/w1cDnyilFU=',
 //   channelSecret: '21b2b8ce572c642f88c051edd182999b'
 // };
@@ -86,7 +86,7 @@ function lawSearch () {
 
       textString += date.replace(/\r\n|\n/g, '') + '， ' +
       status.replace(/\r\n|\n/g, '') + ': ' + content.replace(/\r\n|\n/g, '') + '\n' +
-      ' 網址: https://lis.ly.gov.tw' + url.toString() + '\n' +
+      ' 網址: https://lis.ly.gov.tw' + encodeURI(url) + '\n' +
       '-----------' + '\n';
       // let publishedLaw = {
       //   type: 'text',
