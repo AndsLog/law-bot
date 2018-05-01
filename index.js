@@ -75,7 +75,8 @@ function lawSearch () {
     }
     let $ = cheerio.load(body); // 載入 body
     let lawsTableTrs = $('table.sumtab').find('tr');
-    let results = [];
+    // let results = [];
+    let textString = '';
     for (let i = 1; i < lawsTableTrs.length; i++) {
       let lawsTds = lawsTableTrs.eq(i).find('td');
       let date = lawsTds.eq(1).text();
@@ -83,19 +84,35 @@ function lawSearch () {
       let content = lawsTds.eq(3).find('a').text();
       let url = lawsTds.eq(3).find('a').attr('href');
 
-      let publishedLaw = {
-        type: 'text',
-        text: date.replace(/\r\n|\n/g, '') + '， ' + status.replace(/\r\n|\n/g, '') + ': ' + content.replace(/\r\n|\n/g, '') +
-        ' 網址: https://lis.ly.gov.tw' + url.toString()
-      };
-      results.push(publishedLaw);
+      textString += date.replace(/\r\n|\n/g, '') + '， ' +
+      status.replace(/\r\n|\n/g, '') + ': ' + content.replace(/\r\n|\n/g, '') + '\n' +
+      ' 網址: https://lis.ly.gov.tw' + url.toString() + '\n' +
+      '-----------' + '\n';
+      // let publishedLaw = {
+      //   type: 'text',
+      //   text: date.replace(/\r\n|\n/g, '') + '， ' + status.replace(/\r\n|\n/g, '') + ': ' + content.replace(/\r\n|\n/g, '') +
+      //   ' 網址: https://lis.ly.gov.tw' + url.toString()
+      // };
+      // results.push(publishedLaw);
 
-      if (results.length === 5) {
-        console.log(results);
-        client.pushMessage(userId, results);
-        results = [];
-        console.log('empty: ' + results);
-      }
+      // if (results.length === 5) {
+      //   let results = {
+      //     type: 'text',
+      //     text: textString
+      //   };
+      //   console.log(results);
+      //   client.pushMessage(userId, results);
+      //   results = [];
+      //   console.log('empty: ' + results);
+      // }
     }
+    let results = {
+      type: 'text',
+      text: textString
+    };
+    console.log(results);
+    client.pushMessage(userId, results);
+    results = [];
+    console.log('empty: ' + results);
   });
 }
