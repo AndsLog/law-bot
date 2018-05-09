@@ -56,7 +56,10 @@ app.post('/callback', line.middleware(config), (req, res) => {
         type: 'text',
         text: greetingString
       };
-      return client.pushMessage(sourceId, results);
+      return Promise.all([
+        eventType,
+        client.pushMessage(sourceId, results)
+      ]);
     }
 
     if ((eventType === 'message' || messageType === 'text') && userId !== verifyUserId) {
@@ -89,13 +92,21 @@ app.post('/callback', line.middleware(config), (req, res) => {
           resolve(results);
         });
       }).then((results) => {
-        return client.replyMessage(replyToken, results);
+        return Promise.all([
+          eventType,
+          client.replyMessage(replyToken, results)
+        ]);
       });
     }
 
-    return Promise.resolve();
-  })).then(() => {
-    let resJson = 'Success';
+    return Promise.resolve(eventType);
+  })).then((eventType) => {
+    let types = eventType[0];
+    let type = types instanceof Array ? types[0] : null;
+    let resJson = {
+      status: 'success',
+      type: type === null ? types : type
+    };
     console.log(resJson);
     res.status(200).json(resJson);
   }).catch((err) => {
