@@ -8,17 +8,10 @@ const request = require('request');
 const cheerio = require('cheerio');
 
 // create LINE SDK config from env variables
-// for andy not
 const config = {
-  channelAccessToken: 'YBj7tCC0v+3hSQS1OPOI3WGgpuiWwOqA+vs6AlZPgc7kksKaZnXXKMSDovk492L64WbEBSRPcq7Yr9WZ8EKS0un7/AJPpCP92Rr4Y+H+DxUnF/ZVzS20I+iNEBCe1oGEblvmazUj0D5157DnSQhAagdB04t89/1O/w1cDnyilFU=',
-  channelSecret: 'cb52a3777c92132d08710579a22a5424'
+  channelAccessToken: process.env.channelAccessToken,
+  channelSecret: process.env.channelSecret
 };
-
-// for rel bot 5
-// const config = {
-//   channelAccessToken: 'CHSFSSkScq10baLGKQO0AWVoZ6hTTA3x8xSbAiwF1TY4rNBDZqiPFXsgpgN9mycyQUBVcouOMaSOY83jZs0HiQaRZCUZgnn98r15EVDg40U/FFPGGyyRp/zHlSD3rZYZkCZRW7uEQHEufpW2YRG0+wdB04t89/1O/w1cDnyilFU=',
-//   channelSecret: '21b2b8ce572c642f88c051edd182999b'
-// };
 
 const lawGovUrl = 'https://lis.ly.gov.tw/lglawc/lglawkm';
 const countryLawUrl = 'https://law.moj.gov.tw//Schedule/cll.html';
